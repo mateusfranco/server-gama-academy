@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "name": "mateus",
+      "cpf": "12345678901",
+      "birthDate": "01/01/2012",
+      "email": "asd@qwe.com",
+      "password": "12316",
+      "id": 2
+    }
+  ]
+}
