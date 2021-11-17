@@ -1,4 +1,4 @@
-const TOKEN_INTERVAL = 1000 * 60 * 60
+const TOKEN_INTERVAL = 1000 * 60 * 60;
 const loggedUsers = {};
 
 const loginHelper = (email, token) => {
@@ -16,8 +16,8 @@ const auth = (email, token) => {
   cleanTokens(email);
 }
 
-const isLogged = (email) => {
-  return !!loggedUsers[email];
+const isLogged = (email, token) => {
+  return loggedUsers[email] && loggedUsers[email] == token;
 }
 
 const showLoggeds = () => {
@@ -26,4 +26,4 @@ const showLoggeds = () => {
   }, 3000);
 }
 
-module.exports = {auth, isLogged}
+module.exports = {auth, isLogged, showLoggeds};

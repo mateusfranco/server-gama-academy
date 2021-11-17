@@ -2,27 +2,6 @@ const editJsonFile = require("edit-json-file");
 const db = require('./db.json');
 let file = editJsonFile(`${__dirname}/db.json`);
 
-// const addInDB = (
-//   name,
-//   cpf,
-//   birthDate,
-//   email,
-//   password,
-// ) => {
-//   let users = file.get('users') || [];
-//   let id = users.length > 0 ? users[users.length - 1] : 1;
-//   users.push({
-//     name,
-//     cpf,
-//     birthDate,
-//     email,
-//     password,
-//     id
-//   });
-//   file.set('users', users);
-//   file.save();
-// }
-
 const changeInDB = (
   id,
   name, 
@@ -31,7 +10,7 @@ const changeInDB = (
 ) => {
   let users = file.get('users') || [];
   users.forEach(user => {
-    if (user.id === id) {
+    if (user.id == id) {
       user.name = name;
       user.cpf = cpf;
       user.birthDate = birthDate;
@@ -49,8 +28,15 @@ const deleteInDB = (id) => {
   file.save();
 }
 
+const searchInDB = (id) => {
+  const users = file.get('users') || [];
+  const user = users.filter(user => user.id == id);
+  if (Array.isArray(user) && user.length > 0) return user[0];
+  return user;
+}
+
 module.exports = {
-  addInDB,
   changeInDB,
-  deleteInDB
+  deleteInDB,
+  searchInDB,
 }
