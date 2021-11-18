@@ -1,15 +1,16 @@
 const dbCommands = require('../db/dbCommands');
 
 const userRepository = () => ({
-  changeUser: (id, name, cpf, birthDate) => {
+  changeUser: (id, name, cpf, birthDate, email) => {
     const user = dbCommands.searchInDB(id);
     if (!user) return { error: "user doesnt exists" };
-    dbCommands.changeInDB(id, name, cpf, birthDate);
+    dbCommands.changeInDB(id, name, cpf, birthDate, email);
     return ({
       id,
       name,
       cpf,
       birthDate,
+      email,
     })
   },
 
@@ -22,6 +23,7 @@ const userRepository = () => ({
       name: user.name,
       cpf: user.cpf,
       birthDate: user.birthDate,
+      email: user.email
     });
   },
 
@@ -33,6 +35,7 @@ const userRepository = () => ({
       name: user.name,
       cpf: user.cpf,
       birthDate: user.birthDate,
+      email: user.email,
     });
   }
 

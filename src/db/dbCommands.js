@@ -7,6 +7,7 @@ const changeInDB = (
   name, 
   cpf, 
   birthDate,
+  email
 ) => {
   let users = file.get('users') || [];
   users.forEach(user => {
@@ -14,6 +15,7 @@ const changeInDB = (
       user.name = name;
       user.cpf = cpf;
       user.birthDate = birthDate;
+      user.email = email
     }
   });
   file.set('users', users);

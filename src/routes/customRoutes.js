@@ -24,9 +24,9 @@ const createCustomRoutes = server => {
     middlewares.authMiddleware
   ], (req, res) => {
     const { id } = req.query;
-    const { name, cpf, birthDate } = req.body;
+    const { name, cpf, birthDate, email } = req.body;
     const userRepository = users();
-    const response = userRepository.changeUser(id, name, cpf, birthDate);
+    const response = userRepository.changeUser(id, name, cpf, birthDate, email);
     res.status(200).json({ user: response });
   });
 
