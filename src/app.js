@@ -7,9 +7,8 @@ const router = jsonServer.router(path.join(__dirname + '/db/', 'db.json'))
 const middlewares = jsonServer.defaults();
 server.use(jsonServer.bodyParser)
 
-server.post('/echo', (req, res) => {
-  console.log(req.body);
-  res.jsonp(req.body);
+server.get('/echo', (req, res) => {
+  res.jsonp({ texto: "oi" });
 });
 
 customRoutes(server);

@@ -3,8 +3,10 @@ const authHelper = require('../helper/loginHelper');
 
 const customMiddlewares = ({
   authMiddleware: (req, res, next) => {
-    const { email, token } = req.body;
-    const logged = authHelper.isLogged(email,token);
+    let { email, token } = req.body;
+    email = req.query.email;
+    token = req.query.token;
+    const logged = authHelper.isLogged(email, token);
     if (logged) {
       console.log(`[🔐][✅][authMiddleware]->>>${email}`);
       return next();
