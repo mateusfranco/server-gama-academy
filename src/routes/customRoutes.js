@@ -7,8 +7,11 @@ const createCustomRoutes = server => {
   server.post('/login', (req, res) => {
     const { email, password } = req.body;
     authRep = auth();
+    const userRepository = users();
     const response = authRep.login(email, password);
-    res.status(200).json(response);
+    const user = userRepository.getUserByEmail(email);
+
+    res.status(200).json({ ...response, ...user });
   });
 
   server.get('/users', [

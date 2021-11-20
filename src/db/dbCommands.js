@@ -37,8 +37,16 @@ const searchInDB = (id) => {
   return user;
 }
 
+const searchByEmail = (email) => {
+  const users = file.get('users') || [];
+  const user = users.filter(user => user.email == email);
+  if (Array.isArray(user) && user.length > 0) return user[0];
+  return user;
+}
+
 module.exports = {
   changeInDB,
   deleteInDB,
   searchInDB,
+  searchByEmail,
 }

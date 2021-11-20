@@ -37,6 +37,18 @@ const userRepository = () => ({
       birthDate: user.birthDate,
       email: user.email,
     });
+  },
+
+  getUserByEmail: (email) => {
+    const user = dbCommands.searchByEmail(email);
+    if (!user) return { error: "user doesnt exists" };
+    return ({
+      id: user.id,
+      name: user.name,
+      cpf: user.cpf,
+      birthDate: user.birthDate,
+      email: user.email,
+    });
   }
 
 });
