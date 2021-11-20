@@ -1,19 +1,18 @@
-const crypto = require("crypto");
+const crypto = require('crypto');
 const db = require('../db/db.json');
 const loginHelper = require('../helper/loginHelper');
-
 const auth = () => ({
   login: (email, password) => {
     const user = db.users.filter(user => user.email === email && user.password === password);
+    const token = crypto.randomBytes(20).toString('hex');
     if (user.length > 0) {
-      loginHelper.auth(email, password);
+      loginHelper.auth(email, token);
       return {
         email: user.email,
-        token: crypto.randomBytes(20).toString('hex')
+        token
       };
     }
-    return { error: "loginError" }
+    return { error: 'loginError' }
   }
 });
-
 module.exports = auth;
